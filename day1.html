@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 1 - 100DaysOfCode</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Geist:wght@100..900&family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body{
+            box-sizing: border-box;
+            font-family: "Geist", sans-serif;
+        }
+        .container{
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+        .heading{
+            padding: 50px;
+            font-weight: 500;
+        }
+        .inputContainer{
+            padding: 50px;
+        }
+        .inputContainer input {
+            padding: 10px;
+            width: 250px;
+            border-radius: 15px;
+            border: 1px solid black;
+        }
+        .inputContainer button {
+            padding: 10px;
+            width: 150px;
+            border-radius: 15px;
+            border: 1px solid black;
+            background-color: rgb(230, 228, 228);
+        }
+        .inputContainer button:hover{
+            background-color: rgb(145, 143, 143);
+            border: 1px solid rgb(53, 53, 53);  
+            cursor: pointer;
+        }
+        .taskContainer{
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+        .taskHeading{
+            display: none;
+            grid-template-columns: repeat(4,1fr);
+            padding: 0px;
+            font-weight: bold;
+            column-gap: 50px;
+        }
+        .addedTasks{
+            display: grid;
+            grid-template-columns: repeat(4,1fr);
+            column-gap: 50px;
+            align-items: center;
+        }
+        .addedTasks button {
+            height: 25px;
+            border-radius: 5px;
+            border: 1px solid black;
+            cursor: pointer;
+        }
+        .userTasks{
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="heading">
+            <h1>To-do List</h1>
+        </div>
+        <div class="inputContainer">
+            <input type="text" class="userInp">
+            <button class="addTaskBtn">ADD TASK</button>
+        </div>
+        <div class="taskContainer" id="taskContainer">
+            <div class="taskHeading">
+                <p>Tasks</p>
+                <p>Date added</p>
+                <p>Status</p>
+            </div>
+            <div class="userTasks"></div>
+        </div>
+    </div>
+    <script>
+        let tasks = [];
+        const userInput = document.querySelector('.userInp');
+        const addTaskBtn = document.querySelector('.addTaskBtn');
+        const delClassBtn = document.querySelector('.delClassBtn');
+        const taskContainer = document.querySelector('.taskContainer');
+        let userTasks = document.querySelector('.userTasks');
+
+        function renderTasks(){
+            let taskHTML = "";
+            tasks.forEach((task) => {
+                taskHTML += `
+                <div class="addedTasks" data-id="${task.taskID}">
+                    <p>${task.taskName}</p>
+                    <p>${task.taskDate}</p>
+                    <p>${task.taskStatus}</p>
+                    <button class="delClassBtn" data-id="${task.taskID}">Delete Task</button>
+                </div>
+                `;
+            });
+            userTasks.innerHTML = taskHTML;
+            document.querySelector('.taskHeading').style.display = tasks.length ? "grid" : "none";
+        }
+
+        addTaskBtn.addEventListener('click', () => {
+            let date = new Date();
+            let day = String(date.getDate()).padStart(2,'0');
+            let month = String(date.getMonth() + 1).padStart(2,'0');
+            let year = date.getFullYear();
+            tasks.push({
+                taskID: Math.floor(100 + Math.random() * 900),
+                taskName: userInput.value,
+                taskDate: `${day}-${month}-${year}`,
+                taskStatus: "Not completed"
+            });
+            renderTasks();
+            userInput.value = "";
+        })
+        
+        userTasks.addEventListener('click', (e) => {
+            if (e.target.classList.contains('delClassBtn')) {
+                let id = e.target.getAttribute('data-id');
+                tasks = tasks.filter(task => task.taskID != id);
+                renderTasks();
+            }
+        });
+    </script>
+</body>
+</html>
