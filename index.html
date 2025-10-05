@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Language Agnostic Chatbot System Architecture</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            background-color: #ffffff;
+            font-family: Arial, sans-serif;
+            font-size: 14px;
+        }
+
+        .architecture-container {
+            position: relative;
+            width: 1000px;
+            height: 750px;
+            /* Add a temporary border to visualize the container during development */
+            /* border: 1px solid red; */
+        }
+
+        .box {
+            position: absolute;
+            background-color: #f0f0f0;
+            border: 1px solid #b0b0b0;
+            border-radius: 8px;
+            text-align: center;
+            padding: 8px 12px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .box-small-text {
+            font-size: 12px;
+        }
+
+        .icon {
+            width: 24px;
+            height: 24px;
+            margin-right: 8px;
+        }
+        
+        .user-icon {
+            width: 32px;
+            height: 32px;
+            margin-bottom: 4px;
+        }
+
+        .title-box {
+            top: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #fce8b2;
+            border-color: #e6a800;
+            padding: 10px 20px;
+            font-size: 1.2em;
+            font-weight: bold;
+            white-space: nowrap;
+        }
+
+        /* Client Layer */
+        .user-group {
+            position: absolute;
+            top: 110px;
+            left: 50px;
+            display: flex;
+            gap: 20px;
+        }
+        .user {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-size: 13px;
+        }
+        .app-group {
+            position: absolute;
+            top: 90px;
+            left: 210px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        
+        .client-label {
+            position: absolute;
+            top: 195px;
+            left: 230px;
+            font-weight: bold;
+            font-size: 13px;
+        }
+
+        /* Server Layer */
+        .flask-box {
+            top: 130px;
+            left: 420px;
+            width: 160px;
+            padding: 10px;
+            background-color: #e0e0e0;
+        }
+
+        /* AI Engine Layer */
+        .ai-engine-container {
+            position: absolute;
+            top: 250px;
+            left: 325px;
+            width: 350px;
+            height: 230px;
+            border: 2px solid #a0a0a0;
+            background-color: #f8f8f8;
+            border-radius: 10px;
+        }
+        .ai-engine-title {
+            position: absolute;
+            top: -12px;
+            left: 15px;
+            background-color: #f8f8f8;
+            padding: 0 10px;
+            font-weight: bold;
+            font-size: 1.1em;
+        }
+        .ai-engine-box {
+            position: absolute;
+            width: 300px;
+            left: 25px;
+            padding: 15px 10px;
+            background-color: #e6f3f0;
+            border-color: #a0c7bd;
+        }
+        #langchain { top: 30px; }
+        #google
